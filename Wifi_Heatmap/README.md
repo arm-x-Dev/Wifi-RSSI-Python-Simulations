@@ -1,6 +1,3 @@
-### 📝 Final Comprehensive `README.md`
-
-
 # WiFi RSSI & CSI Python Simulations 📶
 
 This repository provides an end-to-end framework for simulating, processing, and visualizing **WiFi Channel State Information (CSI)** and **RSSI** data. It transforms raw signal scans from CSV/TXT files into high-fidelity spatial heatmaps.
