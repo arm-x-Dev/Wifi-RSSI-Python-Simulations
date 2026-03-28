@@ -1,13 +1,3 @@
-Great job on getting the repository live! A good README acts like a storefront—it tells visitors exactly what your project does and how they can use it.
-
-Since your repository name mentions **RSSI** but your files contain **CSI** (which is much more granular data), I’ve written this to cover both.
-
----
-
-### Suggested README.md
-You can create a file named `README.md` in your local folder, paste this in, and then `git add`, `commit`, and `push` it.
-
-```markdown
 # WiFi RSSI & CSI Python Simulations
 
 This repository contains Python-based simulations and data visualizations for **WiFi Signal Analysis**, specifically focusing on **RSSI (Received Signal Strength Indication)** and **CSI (Channel State Information)** mapping.
@@ -48,15 +38,3 @@ The project generates heatmaps to represent signal strength distribution. These 
 
 ## 📜 License
 This project is open-source. Feel free to use and modify the simulations for research and educational purposes.
-```
-
----
-
-### How to update your GitHub now:
-Run these commands in your terminal to see your new README live:
-
-1. `git add README.md`
-2. `git commit -m "Add professional README with project overview"`
-3. `git push`
-
-**Would you like me to add a section to the README specifically explaining the difference between RSSI and CSI for your future users?**
