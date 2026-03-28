@@ -54,5 +54,3 @@ The simulation generates subcarrier-level data, allowing for the analysis of:
 
 ## 🤝 Contributing
 Contributions are welcome! If you have ideas for more realistic propagation models or better visualization techniques, feel free to open an issue or a PR.
-```
-
