@@ -1,9 +1,3 @@
-Since you have now included the **`Heatmap.ipynb`** logic, your README should highlight how the project moves from raw signal data to **spatial visualization**. 
-
-Your `Heatmap.ipynb` specifically focuses on simulating how signal strength ($dBm$) decays over distance ($d$) using the **Log-Distance Path Loss Model**, which is a core concept in wireless networking.
-
----
-
 ### 📝 Final Comprehensive `README.md`
 
 ```markdown
