@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wi-Fi RSSI Spatial Simulation Sandbox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Welcome / Title Onboarding Overlay -->
+  <div class="welcome-overlay" id="welcome-overlay">
+    <div class="welcome-card">
+      <div class="welcome-icon">📶</div>
+      <h1>Wi-Fi RSSI Sandbox</h1>
+      <p class="welcome-subtitle">Interactive Spatial Propagation Simulator</p>
+      
+      <div class="welcome-features">
+        <div class="feature-item">
+          <div class="feature-badge">📶</div>
+          <div class="feature-desc">
+            <h3>Position Routers</h3>
+            <p>Place and drag multiple routers. Adjust transmit power and toggle 2.4 GHz vs 5.0 GHz bands.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-badge">🧱</div>
+          <div class="feature-desc">
+            <h3>Draw Obstacles & Walls</h3>
+            <p>Draw concrete, wood, metal, or glass walls. Signal strength updates instantly to show attenuation behind them.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-badge">📱</div>
+          <div class="feature-desc">
+            <h3>Inspect Device Telemetry</h3>
+            <p>Walk a virtual client phone to view real-time signal bars, line-of-sight ray tracing, and connection speeds.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-badge">📊</div>
+          <div class="feature-desc">
+            <h3>Compare Real-world Data</h3>
+            <p>Load the exact 5x8 grid measurements from the laboratory scan (scan1.txt) to see how physics-math matches real life.</p>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn-primary" id="btn-enter-sandbox">Enter Simulation Sandbox</button>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar Control Panel -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 21l-2.5-3.05c3.04-2.5 5.96-2.5 9 0L16 21h-4zm0-5c-3.73 0-7.27-1.34-10-3.66l2-2.44c2.27 1.83 5.09 2.85 8 2.85s5.73-1.02 8-2.85l2 2.44c-2.73 2.32-6.27 3.66-10 3.66zm0-5c-2.73 0-5.27-.85-7.5-2.34l2-2.44C8.27 7.02 10.09 7.5 12 7.5s3.73-.48 5.5-1.62l2 2.44c-2.23 1.49-4.77 2.34-7.5 2.34zm0-5c-1.73 0-3.27-.42-4.5-1.12l2-2.44C10.27 2.72 11.09 3 12 3s1.73-.28 2.5-.56l2 2.44c-1.23.7-2.77 1.12-4.5 1.12z"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Wi-Fi RSSI Sandbox</h1>
+          <p class="subtitle">Spatial Propagation Simulator</p>
+        </div>
+      </div>
+
+      <div class="scroll-content">
+        <!-- Section: Interactive Mode -->
+        <div class="control-group">
+          <label class="group-label">Interaction Mode</label>
+          <div class="modes-grid">
+            <button class="mode-btn active" data-mode="routers" id="mode-routers">
+              <span class="btn-icon">📶</span>
+              <span class="btn-text">AP Edit</span>
+            </button>
+            <button class="mode-btn" data-mode="walls" id="mode-walls">
+              <span class="btn-icon">🧱</span>
+              <span class="btn-text">Draw Walls</span>
+            </button>
+            <button class="mode-btn" data-mode="device" id="mode-device">
+              <span class="btn-icon">📱</span>
+              <span class="btn-text">Walk Client</span>
+            </button>
+            <button class="mode-btn" data-mode="empirical" id="mode-empirical">
+              <span class="btn-icon">📊</span>
+              <span class="btn-text">Real Scan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Section: Router Configurations (Dynamic) -->
+        <div class="control-group" id="ap-settings-panel">
+          <div class="group-header">
+            <label class="group-label">Access Point Settings</label>
+            <button class="btn-small" id="btn-add-ap">+ Add AP</button>
+          </div>
+          <div class="ap-list" id="ap-list-container">
+            <!-- Dynamic active AP settings are injected here -->
+          </div>
+        </div>
+
+        <!-- Section: Environment Settings -->
+        <div class="control-group">
+          <label class="group-label">Propagation Properties</label>
+          <div class="slider-container">
+            <div class="slider-label">
+              <span>Path Loss Exponent (n)</span>
+              <span id="val-ple">2.5</span>
+            </div>
+            <input type="range" id="slider-ple" min="1.0" max="5.0" step="0.1" value="2.5">
+            <div class="slider-info">Free Space = 2.0 | Dense Indoor = 3.0+</div>
+          </div>
+
+          <div class="slider-container" id="wall-material-container">
+            <div class="slider-label">
+              <span>Wall Material</span>
+            </div>
+            <div class="wall-materials">
+              <button class="material-btn active" data-material="concrete" style="--mat-color: #8b929a;">
+                <span class="color-dot" style="background-color: #8b929a;"></span>
+                <span>Concrete (-12dB)</span>
+              </button>
+              <button class="material-btn" data-material="wood" style="--mat-color: #a05a2c;">
+                <span class="color-dot" style="background-color: #a05a2c;"></span>
+                <span>Wood (-3dB)</span>
+              </button>
+              <button class="material-btn" data-material="metal" style="--mat-color: #00e5ff;">
+                <span class="color-dot" style="background-color: #00e5ff;"></span>
+                <span>Metal (-20dB)</span>
+              </button>
+              <button class="material-btn" data-material="glass" style="--mat-color: #e0f7fa;">
+                <span class="color-dot" style="background-color: #e0f7fa;"></span>
+                <span>Glass (-2dB)</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="btn-secondary" id="btn-clear-walls">Clear All Walls</button>
+          <button class="btn-danger" id="btn-delete-wall" style="display: none; border-color: var(--accent-red); color: var(--accent-red); margin-top: 8px;">Delete Selected Wall</button>
+        </div>
+
+        <!-- Section: Presets & Controls -->
+        <div class="control-group" id="empirical-panel" style="display: none;">
+          <label class="group-label">Empirical Scan1 Data AP</label>
+          <div class="select-container">
+            <select id="select-empirical-ap">
+              <option value="RSSI_M21">AP 1: BSSID_M21</option>
+              <option value="RSSI_A34">AP 2: Alok's A34</option>
+              <option value="RSSI_Home 2.4GHz">AP 3: Home 2.4GHz</option>
+            </select>
+          </div>
+          <div class="slider-info">Displays the 5x8 tile grid from the notebook using averaged measurements from scan1.txt. Compare how distance and walls correlate with real attenuation!</div>
+        </div>
+
+        <!-- Section: Live Telemetry -->
+        <div class="control-group telemetry-panel" id="telemetry-panel">
+          <label class="group-label">Live Client Telemetry</label>
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <div class="telemetry-val" id="tel-ap">-</div>
+              <div class="telemetry-lbl">Connected AP</div>
+            </div>
+            <div class="telemetry-card">
+              <div class="telemetry-val" id="tel-rssi">-</div>
+              <div class="telemetry-lbl">RSSI</div>
+            </div>
+          </div>
+          
+          <div class="rssi-bar-container">
+            <div class="rssi-bar-fill" id="rssi-fill" style="width: 0%;"></div>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="mini-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="group-label">Simulation Resolution</label>
+          <div class="resolution-toggle">
+            <button class="res-btn active" id="res-normal">Standard (Fast)</button>
+            <button class="res-btn" id="res-high">High Res (Detailed)</button>
+          </div>
+          <button class="btn-danger" id="btn-reset">Reset Everything</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <header class="workspace-header">
+        <div class="instructions" id="status-message">
+          Mode: Place Access Points. Click on the canvas to place a router, or drag to move them.
+        </div>
+        <div class="header-actions">
+          <button class="btn-circle" id="toggle-rays" title="Toggle Ray Tracing">📐</button>
+          <button class="btn-circle" id="toggle-grid" title="Toggle Grid Labels">🔢</button>
+          <div class="palette-selector">
+            <button class="palette-btn active" data-palette="coolwarm" title="Coolwarm Palette">🌡️</button>
+            <button class="palette-btn" data-palette="viridis" title="Viridis Palette">🌈</button>
+            <button class="palette-btn" data-palette="magma" title="Magma Palette">🔥</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="canvas-container" id="canvas-container">
+        <!-- Canvas viewports -->
+        <canvas id="heatmap-canvas"></canvas>
+        <canvas id="interaction-canvas"></canvas>
+      </div>
+
+      <footer class="workspace-footer">
+        <div class="legend">
+          <span class="legend-item"><span class="legend-color" style="background: var(--accent-green);"></span>Strong (-30 dBm)</span>
+          <span class="legend-item"><span class="legend-color" style="background: #e0f7fa;"></span>Medium (-60 dBm)</span>
+          <span class="legend-item"><span class="legend-color" style="background: var(--accent-purple);"></span>Weak (-90 dBm)</span>
+        </div>
+        <div class="stats">
+          FPS: <span id="val-fps">60</span> | APs: <span id="val-ap-count">1</span> | Walls: <span id="val-walls-count">0</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
