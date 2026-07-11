@@ -1,4 +1,4 @@
-# 📡 Wi-Fi CSI (Channel State Information) Simulation
+# Wi-Fi CSI (Channel State Information) Simulation
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
@@ -12,7 +12,7 @@ Unlike basic RSSI, which only represents average signal strength, CSI provides h
 
 ---
 
-## 🚀 Overview
+## Overview
 The core of this module is the [SimulatedCSI.ipynb](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/CSI_Map/SimulatedCSI.ipynb) Jupyter Notebook. It generates synthetic CSI data mimicking a 52-subcarrier system (like 802.11n 20MHz bandwidth) across three distinct human activity scenarios:
 
 1. **Still Room (Scenario 1)**: Models a static indoor environment. The signal contains only minor Gaussian noise and stable, baseline offsets.
@@ -21,14 +21,14 @@ The core of this module is the [SimulatedCSI.ipynb](file:///c:/Users/alokm/Deskt
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 
 * [SimulatedCSI.ipynb](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/CSI_Map/SimulatedCSI.ipynb): The notebook containing the simulation generator and visualization cells.
 * [README.md](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/CSI_Map/README.md): This documentation.
 
 ---
 
-## 🛠️ Technical Signal Modeling
+## Technical Signal Modeling
 CSI simulates the transmission channel response using complex-valued channel transfer functions (CTF) for each subcarrier $f$:
 
 $$H(f) = |H(f)| e^{j \angle H(f)}$$
@@ -39,7 +39,7 @@ $$H(f) = |H(f)| e^{j \angle H(f)}$$
 
 ---
 
-## 🚦 Running the Notebook
+## Running the Notebook
 
 To run the simulation and generate the heatmaps locally:
 
