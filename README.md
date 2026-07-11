@@ -1,4 +1,4 @@
-# 📡 Wi-Fi RSSI & CSI Python Simulations & Visualizations
+# Wi-Fi RSSI & CSI Python Simulations & Visualizations
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
@@ -11,7 +11,7 @@ This repository contains an end-to-end Python framework for simulating and visua
 
 ---
 
-## 🚀 Key Modules & Notebooks
+## Key Modules & Notebooks
 
 The project is structured into three self-contained directories, each featuring interactive notebooks split by scenario or device for step-by-step execution:
 
@@ -28,7 +28,7 @@ The project is structured into three self-contained directories, each featuring 
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 * Python 3.8+
@@ -69,7 +69,7 @@ The project is structured into three self-contained directories, each featuring 
 
 ---
 
-## 📊 Visualization Highlights
+## Visualization Highlights
 * **Amplitude Heatmaps (`viridis` / auto-scaled)**: Represents subcarrier power distribution. Useful for identifying static vs. dynamic attenuation.
 * **Phase Angle Heatmaps (`twilight` / cyclical)**: Visualizes phase shift wrapping ($-\pi$ to $\pi$) to detect subtle multi-path changes.
 * **RSSI Heatmaps (`hot` / log-scale)**: Indicates overall packet signal strength.
