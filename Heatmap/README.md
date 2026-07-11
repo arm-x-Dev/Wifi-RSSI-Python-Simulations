@@ -1,4 +1,4 @@
-# 📊 Wi-Fi CSI & RSSI Heatmap Visualization (CSV Data)
+# Wi-Fi CSI & RSSI Heatmap Visualization (CSV Data)
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
@@ -12,7 +12,7 @@ Unlike simulations, this module is built to ingest structural logs (from files l
 
 ---
 
-## 🚀 Overview
+## Overview
 The core of this module is the [Heatmap.ipynb](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/Heatmap/Heatmap.ipynb) Jupyter Notebook. It loads and visualizes structural CSI data from the `Data/` folder across three environmental datasets:
 
 1. **Still Room (`Data/stillroom.csv`)**: Data recorded in an empty or static room. Features highly stable amplitude, flat phase distributions, and steady RSSI.
@@ -21,7 +21,7 @@ The core of this module is the [Heatmap.ipynb](file:///c:/Users/alokm/Desktop/Wi
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 
 * **`Data/`**: Contains the logged CSI datasets.
   * [stillroom.csv](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/Heatmap/Data/stillroom.csv)
@@ -32,7 +32,7 @@ The core of this module is the [Heatmap.ipynb](file:///c:/Users/alokm/Desktop/Wi
 
 ---
 
-## 🔬 Processing Pipeline
+## Processing Pipeline
 The notebook processes the CSV log files using the following steps:
 1. **Column Verification**: Ensures columns for `SubCarrier_index`, `amplitude`, `phase`, and `RSSI` exist.
 2. **Subcarrier Inference**: Automatically determines the number of subcarriers per packet based on the maximum index.
@@ -45,7 +45,7 @@ The notebook processes the CSV log files using the following steps:
 
 ---
 
-## 🚦 Running the Notebook
+## Running the Notebook
 
 To view and generate the heatmaps:
 
