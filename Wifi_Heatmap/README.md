@@ -1,4 +1,4 @@
-# 📡 Wi-Fi RSSI Database-driven Heatmap Visualization
+# Wi-Fi RSSI Database-driven Heatmap Visualization
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
@@ -12,7 +12,7 @@ Instead of theoretical simulations, this notebook processes actual logged values
 
 ---
 
-## 🚀 Overview
+## Overview
 The core of this module is the [Wifi_Heatmap_Databased.ipynb](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/Wifi_Heatmap/Wifi_Heatmap_Databased.ipynb) Jupyter Notebook. It loads log files from the `Data/` folder containing RSSI measurements for three distinct Wi-Fi devices or access points:
 
 * **`RSSI_M21`**: Scan results for Access Point M21.
@@ -21,7 +21,7 @@ The core of this module is the [Wifi_Heatmap_Databased.ipynb](file:///c:/Users/a
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 
 * **`Data/`**: Contains the spatial log files.
   * [scan1.txt](file:///c:/Users/alokm/Desktop/Wifi-RSSI-Python-Simulations-main/Wifi_Heatmap/Data/scan1.txt)
@@ -30,7 +30,7 @@ The core of this module is the [Wifi_Heatmap_Databased.ipynb](file:///c:/Users/a
 
 ---
 
-## 🔬 Processing & Mapping Logic
+## Processing & Mapping Logic
 The notebook cleanses and formats the spatial data as follows:
 
 1. **Duplicate Averaging**: Scans often cover the same grid tile multiple times. The script iterates over pairs of consecutive measurements for each tile and averages their values to stabilize noise.
@@ -44,7 +44,7 @@ The notebook cleanses and formats the spatial data as follows:
 
 ---
 
-## 🚦 Running the Notebook
+## Running the Notebook
 
 To view the heatmaps:
 
